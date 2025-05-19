@@ -1,0 +1,11 @@
+{
+  "name": "uptimepulse",
+  "scripts": {
+    "Frontend": "npm run dev --prefix Frontend",
+    "Backend": "npm run dev --prefix Backend",
+    "dev": "concurrently \"npm run Frontend\" \"npm run Backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
