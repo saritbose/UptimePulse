@@ -15,6 +15,15 @@ import {
   UserPlus,
   Users,
 } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const Home = () => {
   return (
@@ -123,7 +132,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* INFOS */}
+      {/* FEATURES SECTION */}
       <div className="px-7">
         <div className="text-4xl font-semibold text-center">
           Features That Scale
@@ -192,48 +201,75 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* FEATURES SS */}
-      <div>
-        <div>
-          <div>Build credit the easy way.</div>
-          <p>
-            If you don't have much credit history, song even 10 every saycheck
-            might improve it. With just a few clicks, you παγ receive immediate
-            approval and begin building your credit in little us two months.
-          </p>
-          <div>Learn More</div>
-          <p>
-            " You're eligible to apply through Credit Karma Money if your
-            TransUnion credit score is 619 or below at the time of application.
-            Members with a credit score of 619 or under could see an increase
-            within 2 months. "
-          </p>
-          <p>Julian Alvarez, CEO,Hotspot</p>
-        </div>
-        <div>
-          <img src="" alt="" />
-        </div>
-      </div>
-      <div>
-        <div>
-          <div>Get the personalized relief you need.</div>
-          <p>
-            Relief roadmap connects you to givemment support and personalized
-            debt relief options, With just a few clicks, you may receive
-            immediata-appruval and begin building your credit in as little as
-            two months.
-          </p>
-          <div>Learn More</div>
-          <p>
-            " You're eligible to apply through Credit Karma Money if your
-            TransUnion credit score is 619 or below at the time of application.
-            Members with a credit score of 619 or under could see an increase
-            within 2 months. "
-          </p>
-          <p>Julian Alvarez, CEO,Hotspot</p>
-        </div>
-        <div>
-          <img src="" alt="" />
+      {/* SUBSCRIPTION SECTION */}
+      <div className="px-7 text-center">
+        <div className="text-4xl font-semibold mb-15">Pick Your Plan</div>
+        <div className="px-7 grid grid-rows-3 md:grid-cols-3 md:grid-rows-none justify-around">
+          <Card className="bg-black text-white border-0 hover:border hover:border-pink-800/80">
+            <CardHeader>
+              <CardTitle className="font-bold text-3xl">Free</CardTitle>
+              <CardDescription>
+                <span className="font-semibold text-2xl text-white">$0</span>
+                /month
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-neutral-400">
+              <p>Up to 3 monitors</p>
+              <p>5min check-interval</p>
+              <p>Email alerts</p>
+              <p>Public status page</p>
+            </CardContent>
+            <CardFooter className="justify-center">
+              <Button className="bg-neutral-950 cursor-pointer">
+                Get Started
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card className="relative bg-black text-white border-pink-800/80 hover:border-pink-800">
+            <CardHeader>
+              <div>
+                <span className="absolute right-2 top-1 font-extrabold text-xs text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+                  Most Popular
+                </span>
+              </div>
+              <CardTitle className="font-bold text-3xl">Pro</CardTitle>
+              <CardDescription>
+                <span className="font-semibold text-2xl text-white">$9</span>
+                /month
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-neutral-400">
+              <p>Up to 25 monitors</p>
+              <p>1min check-interval</p>
+              <p>Email + Webhook alerts</p>
+              <p>Charts PDF</p>
+            </CardContent>
+            <CardFooter className="justify-center">
+              <Button className="cursor-pointer bg-gradient-to-r from-red-500 via-50% to-sky-300 transform transition-transform duration-300 hover:scale-110">
+                Start Free Trial
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card className="bg-black text-white border-0 hover:border hover:border-pink-800/80">
+            <CardHeader>
+              <CardTitle className="font-bold text-3xl">Team</CardTitle>
+              <CardDescription>
+                <span className="font-semibold text-2xl text-white">$29</span>
+                /month
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-neutral-400">
+              <p>Unlimited monitors</p>
+              <p>SMS + Slack alerts</p>
+              <p>Team roles & permissions</p>
+              <p>SLA Reports</p>
+            </CardContent>
+            <CardFooter className="justify-center">
+              <Button className="bg-neutral-950 cursor-pointer">
+                Contact Sales
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       </div>
       {/* ACHIEVEMENTS */}
