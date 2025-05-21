@@ -1,58 +1,69 @@
 import React from "react";
+import Logo from "../assets/UptimePulseLogo.png";
+import {
+  Activity,
+  BarChart,
+  Bell,
+  Clock,
+  ClockFading,
+  GitFork,
+  Globe,
+  LineChart,
+  Mail,
+  Send,
+  Timer,
+  UserPlus,
+  Users,
+} from "lucide-react";
 
 const Home = () => {
   return (
     <div className="bg-black text-white py-5">
       {/* HEADER */}
       <header className="flex justify-between text-sm px-10">
-        <div className="flex">
-          <div>@</div>
+        <div className="flex gap-2 items-center">
+          <img src={Logo} />
           <div>UptimePulse</div>
         </div>
         <div className="hidden md:flex gap-8 text-neutral-400">
+          <div>Home</div>
+          <div>How It Works</div>
           <div>Features</div>
-          <div>Products</div>
-          <div>Community</div>
           <div>Pricing</div>
-          <div>Company</div>
         </div>
         <div className="rainbow rounded-2xl p-[1px]">
           <div className="bg-black rounded-2xl py-1.5 px-4 text-xs cursor-pointer text-white hover:text-neutral-300 ">
-            Free Trial
+            Login
           </div>
         </div>
       </header>
       {/* CTA */}
       <div className="text-center mt-10 px-7">
         <div className="text-5xl text-wrap">
-          Where trust and{" "}
+          Never Miss a{" "}
           <span className="block">
-            credit meet{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-400 to-blue-500">
-              confidence.
+              Downtime{" "}
             </span>
+            Again
           </span>
         </div>
         <p className="text-xs my-5 px-20 text-neutral-200/70">
-          UptimePulse displays customized suggestions based on your credit
-          profile. Additionally, before{" "}
-          <span className="md:block">
-            applying, you can view your Approval Odds without affecting your
-            scores.
-          </span>
+          Lightning-fast, developer-friendly uptime{" "}
+          <span className="block">monitoring + instant alerts.</span>
         </p>
         <div className="flex items-center justify-center gap-5">
           <div className="rainbow rounded-full p-[0.8px]">
             <div className="rounded-full bg-black px-5 py-2 ">
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
-                START FOR FREE
+                Try Free for 14 Days
               </span>
             </div>
           </div>
           <div className="rainbow rounded-full p-[0.8px]">
             <div className="rounded-full bg-black px-5 py-2 ">
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
-                TALK EXPERTS
+                View Demo Site
               </span>
             </div>
           </div>
@@ -75,76 +86,109 @@ const Home = () => {
         </div>
       </div>
       {/* HOW IT WORKS ? */}
-      <div className="py-10 text-center bg-gray-700/20 bg-gradient-to-b from-gray-700/20 via-gray-900/10 to-black">
-        <div className="text-4xl font-semibold">How does it work?</div>
-        <p className="text-xs my-5 px-20 text-neutral-200/70">
-          UptimePulse displays customized suggestions based on your credit
-          profile. Additionally, before{" "}
-          <span className="md:block">
-            applying, you can view your Approval Odds without affecting your
-            scores.
-          </span>
-        </p>
-        <div className="flex flex-col md:flex-row justify-around gap-10 md:gap-20 px-10 my-20">
-          <div className="text-center md:text-left border py-5">
-            <div className="text-2xl font-semibold mb-5">
-              Set up and{" "}
-              <span className="md:block text-nowrap">get organized</span>
+      <div className="py-10 text-center bg-gray-700/20 bg-gradient-to-b from-gray-700/20 to-black">
+        <div className="text-4xl font-semibold">How UptimePulse Works?</div>
+        <div className="flex flex-col md:flex-row justify-around gap-5 md:gap-20 px-10 my-15">
+          <div className="flex flex-col items-center text-center py-5">
+            <ClockFading size={40} />
+            <div className="text-2xl font-semibold mt-2 mb-5 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+              Configure Your{" "}
+              <span className="md:block text-nowrap">Monitors</span>
             </div>
             <p className="text-neutral-400 text-xs px-20 md:px-0">
-              Define your plan, set up workflows, add team members, mark
-              deadlines, create triggers for alerts and notifications.
+              Add any URL in seconds. Choose check-intervals down to 1 minute.
             </p>
           </div>
-          <div className="text-center md:text-left border py-5">
-            <div className="text-2xl font-semibold mb-5">
-              Monitor <span className="md:block text-nowrap">progress</span>
+          <div className="flex flex-col items-center text-center  py-5">
+            <GitFork size={40} />
+            <div className="text-2xl font-semibold mt-2 mb-5 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+              Automated{" "}
+              <span className="md:block text-nowrap">Health Checks</span>
             </div>
             <p className="text-neutral-400 text-xs px-20 md:px-0">
-              Monitor and analyze your team's performance in real-time, stay
-              ahead of potential roadblocks and delays, get periodic updates.
+              Our cron-powered backend pings your sites every 5 minutes and logs
+              status & response time.
             </p>
           </div>
-          <div className="text-center md:text-left border py-5">
-            <div className="text-2xl font-semibold mb-5">
-              Stay on track{" "}
-              <span className="md:block text-nowrap">throughout</span>
+          <div className="flex flex-col items-center text-center  py-5">
+            <Bell size={40} />
+            <div className="text-2xl font-semibold mt-2 mb-5 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+              Instant Alerts{" "}
+              <span className="md:block text-nowrap">& Reports</span>
             </div>
             <p className="text-neutral-400 text-xs px-20 md:px-0">
-              Adapt your plan and course-correct where needed, never miss a
-              deadline, prioritize based on situation and deliver every time.
+              Get emails on downtime, view uptime percentages, and share public
+              status pages.
             </p>
           </div>
         </div>
       </div>
       {/* INFOS */}
       <div className="px-7">
-        <div>Financial progress starts with credit health.</div>
-        <p>
-          Easy to use saas all in one platform to start, run, grow and simplify
-          your business.
-        </p>
-        <div className="flex">
-          <div>
-            <div>Credit monitoring</div>
-            <p>
-              Get alerted to important changes to your reports. Learn what
-              affects your scores and what you can do to improve them.
-            </p>
+        <div className="text-4xl font-semibold text-center">
+          Features That Scale
+        </div>
+        <div className="flex flex-col items-center gap-10 my-15 py-10 overflow-hidden">
+          <div className="flex gap-10">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+              <Activity className=" mb-3" />
+              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+                Real-Time Status
+              </div>
+              <p className="text-neutral-400 text-xs ">
+                Live “Up/Down” badges with last-checked timestamp.
+              </p>
+            </div>
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+              <Timer className=" mb-3" />
+              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+                Custom Intervals
+              </div>
+              <p className="text-neutral-400 text-xs ">
+                Choose checks from 1 to 60 minutes to fit your needs.
+              </p>
+            </div>
           </div>
-          <div>
-            <div>Insights</div>
-            <p>
-              Learn what affects your scores and what you can do to improve
-              them. Get personalized recommendations for ways to use.
-            </p>
+          <div className="flex gap-10">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+              <Globe className=" mb-3" />
+              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+                Public Status Pages
+              </div>
+              <p className="text-neutral-400 text-xs ">
+                Branded status page (e.g., /status/yoursite) you can share.
+              </p>
+            </div>
+
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+              <Mail className=" mb-3" />
+              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+                Email & Webhook Alerts
+              </div>
+              <p className="text-neutral-400 text-xs ">
+                Instant notifications via email, Slack, or custom webhooks.
+              </p>
+            </div>
           </div>
-          <div>
-            <div>Better decisions</div>
-            <p>
-              Get personalized recommendations for ways to use your credit more
-              wisely. Get alerted to important changes to your reports.
-            </p>
+          <div className="flex gap-10">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+              <LineChart className=" mb-3" />
+              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+                Uptime History Charts
+              </div>
+              <p className="text-neutral-400 text-xs ">
+                Visualize uptime % and response times over any date range.
+              </p>
+            </div>
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+              <Users className=" mb-3" />
+              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
+                Team Collaboration
+              </div>
+              <p className="text-neutral-400 text-xs ">
+                Invite teammates, assign roles, and manage shared monitors.
+              </p>
+            </div>
           </div>
         </div>
       </div>
