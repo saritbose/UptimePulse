@@ -2,17 +2,20 @@ import React from "react";
 import Logo from "../assets/UptimePulseLogo.png";
 import {
   Activity,
-  BarChart,
+  ArrowBigDown,
+  ArrowRight,
   Bell,
-  Clock,
+  Bird,
+  Cat,
+  ChevronRight,
   ClockFading,
+  Dog,
   GitFork,
   Globe,
   LineChart,
   Mail,
-  Send,
+  Snail,
   Timer,
-  UserPlus,
   Users,
 } from "lucide-react";
 import {
@@ -24,6 +27,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Input } from "@/components/ui/input";
 
 const Home = () => {
   return (
@@ -139,7 +150,7 @@ const Home = () => {
         </div>
         <div className="flex flex-col items-center gap-10 my-15 py-10 overflow-hidden">
           <div className="flex gap-10">
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
               <Activity className=" mb-3" />
               <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
                 Real-Time Status
@@ -148,7 +159,7 @@ const Home = () => {
                 Live “Up/Down” badges with last-checked timestamp.
               </p>
             </div>
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
               <Timer className=" mb-3" />
               <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
                 Custom Intervals
@@ -159,7 +170,7 @@ const Home = () => {
             </div>
           </div>
           <div className="flex gap-10">
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
               <Globe className=" mb-3" />
               <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
                 Public Status Pages
@@ -169,7 +180,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
               <Mail className=" mb-3" />
               <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
                 Email & Webhook Alerts
@@ -180,7 +191,7 @@ const Home = () => {
             </div>
           </div>
           <div className="flex gap-10">
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
               <LineChart className=" mb-3" />
               <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
                 Uptime History Charts
@@ -189,7 +200,7 @@ const Home = () => {
                 Visualize uptime % and response times over any date range.
               </p>
             </div>
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-40 transform transition-transform duration-300 hover:scale-95">
+            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
               <Users className=" mb-3" />
               <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
                 Team Collaboration
@@ -272,37 +283,54 @@ const Home = () => {
           </Card>
         </div>
       </div>
-      {/* ACHIEVEMENTS */}
-      <div className="flex">
-        <div>4.9</div>
-        <div>7M</div>
-        <div>1</div>
-        <div>5.0</div>
-        <div>4.9</div>
-      </div>
       {/* REVIEWS */}
-      <div>
-        <div className="flex">
-          <div>
-            <div>What our client says</div>
-            <p>
+      <div className="px-7">
+        <div className="flex justify-between items-baseline">
+          <div className="mb-10">
+            <div className="text-4xl font-semibold mb-5">
+              What our client says
+            </div>
+            <p className="text-sm text-neutral-400/80">
               Track your entire project from start to finish with beautiful
               views that make project planning a breeze manage your resources.
             </p>
           </div>
-          <div>ALL SUCCESS STORIES</div>
+          <div className="w-fit">
+            <div className="hidden lg:block rainbow rounded-full p-[0.8px]">
+              <div className="rounded-full bg-black px-5 py-2 ">
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
+                  ALL SUCCESS STORIES
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>Testimonials</div>
+        <div className="px-7 mb-10">
+          <Carousel className="px-2 border">
+            <CarouselContent>
+              <CarouselItem>A</CarouselItem>
+              <CarouselItem>B</CarouselItem>
+              <CarouselItem>C</CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious className="text-black" />
+            <CarouselNext className="text-black" />
+          </Carousel>
+        </div>
       </div>
       {/* DESIGN */}
-      <div>Ready to get started?</div>
-      <div>@ UptimePulse</div>
+      <div className="py-15 font-mono text-6xl text-center text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-pink-300/80 to-sky-400/70">
+        Ready to Stay Online 24/7?
+      </div>
+      <div className="flex gap-2 items-center justify-center mb-10">
+        <img src={Logo} />
+        <div>UptimePulse</div>
+      </div>
       {/* FOOTER */}
-      <div>
-        <div className="flex">
-          <div>
+      <div className="px-7">
+        <div className="flex gap-5">
+          <div className="text-left">
             <div>Platform</div>
-            <div>
+            <div className="text-neutral-400/80 mt-7">
               <div>Email Marketing</div>
               <div>SMS</div>
               <div>Platform</div>
@@ -312,7 +340,7 @@ const Home = () => {
           </div>
           <div>
             <div>Support</div>
-            <div>
+            <div className="text-neutral-400/80 mt-7">
               <div>Help Centre</div>
               <div>Community</div>
               <div>Academy</div>
@@ -322,7 +350,7 @@ const Home = () => {
           </div>
           <div>
             <div>Resources</div>
-            <div>
+            <div className="text-neutral-400/80 mt-7">
               <div>Blog</div>
               <div>Guides And Reports</div>
               <div>FAQ</div>
@@ -331,7 +359,7 @@ const Home = () => {
           </div>
           <div>
             <div>Company</div>
-            <div>
+            <div className="text-neutral-400/80 mt-7">
               <div>About Us</div>
               <div>Customers</div>
               <div>Careers</div>
@@ -339,18 +367,33 @@ const Home = () => {
               <div>Partners</div>
             </div>
           </div>
-          <div>
-            <div>Join Our Newsletter</div>
-            <button>Enter your mail</button>
-            <p>
+          <div className="hidden md:block ml-10">
+            <div className="text-xl">Join Our Newsletter</div>
+            <div className="my-2 relative">
+              <Input
+                className="rounded-full h-10 bg-white"
+                placeholder="Enter your mail"
+              />
+              <div className="absolute right-1 top-0.5 w-8.5 h-8.5 flex items-center justify-center rounded-full text-transparent bg-gradient-to-r from-red-400 via-50% to-sky-400">
+                <ArrowRight size={17} className="text-white" />
+              </div>
+            </div>
+            <p className="text-neutral-600">
               * Will send you weekly updates for your better business
               management.
             </p>
           </div>
         </div>
-        <div className="flex">
-          <div>2025. All Rights Reserved</div>
-          <div>T F I</div>
+        <div className="flex justify-between items-end mt-5">
+          <div className="text-xs">
+            © 2025 Sarit Bose • UptimePulse. All rights reserved.
+          </div>
+          <div className="flex gap-1">
+            <Bird size={20} />
+            <Cat size={20} />
+            <Dog size={20} />
+            <Snail size={20} />
+          </div>
         </div>
       </div>
     </div>
