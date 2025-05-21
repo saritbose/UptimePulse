@@ -1,40 +1,19 @@
 import React from "react";
 import Logo from "../assets/UptimePulseLogo.png";
 import {
-  Activity,
-  ArrowBigDown,
   ArrowRight,
   Bell,
   Bird,
   Cat,
-  ChevronRight,
   ClockFading,
   Dog,
   GitFork,
-  Globe,
-  LineChart,
-  Mail,
   Snail,
-  Timer,
-  Users,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Input } from "@/components/ui/input";
+import Testimonials from "../Component/Testimonials";
+import Pricings from "@/Component/Pricings";
+import Features from "@/Component/Features";
 
 const Home = () => {
   return (
@@ -73,14 +52,14 @@ const Home = () => {
           <span className="block">monitoring + instant alerts.</span>
         </p>
         <div className="flex items-center justify-center gap-5">
-          <div className="rainbow rounded-full p-[0.8px]">
+          <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
             <div className="rounded-full bg-black px-5 py-2 ">
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
                 Try Free for 14 Days
               </span>
             </div>
           </div>
-          <div className="rainbow rounded-full p-[0.8px]">
+          <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
             <div className="rounded-full bg-black px-5 py-2 ">
               <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
                 View Demo Site
@@ -145,148 +124,19 @@ const Home = () => {
       </div>
       {/* FEATURES SECTION */}
       <div className="px-7">
-        <div className="text-4xl font-semibold text-center">
-          Features That Scale
-        </div>
-        <div className="flex flex-col items-center gap-10 my-15 py-10 overflow-hidden">
-          <div className="flex gap-10">
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
-              <Activity className=" mb-3" />
-              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
-                Real-Time Status
-              </div>
-              <p className="text-neutral-400 text-xs ">
-                Live “Up/Down” badges with last-checked timestamp.
-              </p>
-            </div>
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
-              <Timer className=" mb-3" />
-              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
-                Custom Intervals
-              </div>
-              <p className="text-neutral-400 text-xs ">
-                Choose checks from 1 to 60 minutes to fit your needs.
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-10">
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
-              <Globe className=" mb-3" />
-              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
-                Public Status Pages
-              </div>
-              <p className="text-neutral-400 text-xs ">
-                Branded status page (e.g., /status/yoursite) you can share.
-              </p>
-            </div>
-
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
-              <Mail className=" mb-3" />
-              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
-                Email & Webhook Alerts
-              </div>
-              <p className="text-neutral-400 text-xs ">
-                Instant notifications via email, Slack, or custom webhooks.
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-10">
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
-              <LineChart className=" mb-3" />
-              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
-                Uptime History Charts
-              </div>
-              <p className="text-neutral-400 text-xs ">
-                Visualize uptime % and response times over any date range.
-              </p>
-            </div>
-            <div className=" border-l border-t border-neutral-400 shadow-lg shadow-neutral-300 p-5 w-1/2 md:w-70 h-45 transform transition-transform duration-300 hover:scale-95">
-              <Users className=" mb-3" />
-              <div className="text-xl font-semibold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
-                Team Collaboration
-              </div>
-              <p className="text-neutral-400 text-xs ">
-                Invite teammates, assign roles, and manage shared monitors.
-              </p>
-            </div>
-          </div>
-        </div>
+        <Features />
       </div>
       {/* SUBSCRIPTION SECTION */}
       <div className="px-7 text-center">
         <div className="text-4xl font-semibold mb-15">Pick Your Plan</div>
         <div className="px-7 grid grid-rows-3 md:grid-cols-3 md:grid-rows-none justify-around">
-          <Card className="bg-black text-white border-0 hover:border hover:border-pink-800/80">
-            <CardHeader>
-              <CardTitle className="font-bold text-3xl">Free</CardTitle>
-              <CardDescription>
-                <span className="font-semibold text-2xl text-white">$0</span>
-                /month
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-neutral-400">
-              <p>Up to 3 monitors</p>
-              <p>5min check-interval</p>
-              <p>Email alerts</p>
-              <p>Public status page</p>
-            </CardContent>
-            <CardFooter className="justify-center">
-              <Button className="bg-neutral-950 cursor-pointer">
-                Get Started
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="relative bg-black text-white border-pink-800/80 hover:border-pink-800">
-            <CardHeader>
-              <div>
-                <span className="absolute right-2 top-1 font-extrabold text-xs text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
-                  Most Popular
-                </span>
-              </div>
-              <CardTitle className="font-bold text-3xl">Pro</CardTitle>
-              <CardDescription>
-                <span className="font-semibold text-2xl text-white">$9</span>
-                /month
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-neutral-400">
-              <p>Up to 25 monitors</p>
-              <p>1min check-interval</p>
-              <p>Email + Webhook alerts</p>
-              <p>Charts PDF</p>
-            </CardContent>
-            <CardFooter className="justify-center">
-              <Button className="cursor-pointer bg-gradient-to-r from-red-500 via-50% to-sky-300 transform transition-transform duration-300 hover:scale-110">
-                Start Free Trial
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="bg-black text-white border-0 hover:border hover:border-pink-800/80">
-            <CardHeader>
-              <CardTitle className="font-bold text-3xl">Team</CardTitle>
-              <CardDescription>
-                <span className="font-semibold text-2xl text-white">$29</span>
-                /month
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-neutral-400">
-              <p>Unlimited monitors</p>
-              <p>SMS + Slack alerts</p>
-              <p>Team roles & permissions</p>
-              <p>SLA Reports</p>
-            </CardContent>
-            <CardFooter className="justify-center">
-              <Button className="bg-neutral-950 cursor-pointer">
-                Contact Sales
-              </Button>
-            </CardFooter>
-          </Card>
+          <Pricings />
         </div>
       </div>
       {/* REVIEWS */}
-      <div className="px-7">
+      <div className="px-7 mt-10">
         <div className="flex justify-between items-baseline">
-          <div className="mb-10">
+          <div>
             <div className="text-4xl font-semibold mb-5">
               What our client says
             </div>
@@ -296,7 +146,7 @@ const Home = () => {
             </p>
           </div>
           <div className="w-fit">
-            <div className="hidden lg:block rainbow rounded-full p-[0.8px]">
+            <div className="hidden lg:block rainbow rounded-full p-[0.8px] cursor-pointer">
               <div className="rounded-full bg-black px-5 py-2 ">
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
                   ALL SUCCESS STORIES
@@ -305,16 +155,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="px-7 mb-10">
-          <Carousel className="px-2 border">
-            <CarouselContent>
-              <CarouselItem>A</CarouselItem>
-              <CarouselItem>B</CarouselItem>
-              <CarouselItem>C</CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious className="text-black" />
-            <CarouselNext className="text-black" />
-          </Carousel>
+        <div className="mb-10">
+          <Testimonials />
         </div>
       </div>
       {/* DESIGN */}
@@ -371,7 +213,8 @@ const Home = () => {
             <div className="text-xl">Join Our Newsletter</div>
             <div className="my-2 relative">
               <Input
-                className="rounded-full h-10 bg-white"
+                type="email"
+                className="rounded-full h-10 bg-white text-black"
                 placeholder="Enter your mail"
               />
               <div className="absolute right-1 top-0.5 w-8.5 h-8.5 flex items-center justify-center rounded-full text-transparent bg-gradient-to-r from-red-400 via-50% to-sky-400">
