@@ -43,7 +43,7 @@ const Navbar = () => {
       </div>
       <div className="sm:hidden flex justify-between items-center rounded-lg px-3 w-screen h-12">
         <div className="rounded-lg flex items-center justify-center bg-slate-500/20  w-8 h-8">
-          <AlignJustify size={20} />
+          <AlignJustify size={20} className="cursor-pointer" />
         </div>
         <div className="rounded-lg flex justify-between items-center px-2 bg-slate-500/20 text-blue-600 w-8 h-8 text-3xl cursor-pointer">
           <Plus size={20} />

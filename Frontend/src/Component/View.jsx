@@ -10,21 +10,21 @@ const View = () => {
           <div className=" p-4 w-25 rounded-md bg-white border-2 border-gray-300 hover:border-green-200">
             <div className="flex items-start justify-between mb-3">
               <p className="text-3xl">10</p>
-              <div className="bg-green-700 w-2 h-2"></div>
+              <div className="bg-green-700 rounded-full w-2 h-2"></div>
             </div>
             <p className="text-neutral-500 text-sm">Working fine</p>
           </div>
           <div className=" p-4 w-25 rounded-md bg-white border-2 border-gray-300 hover:border-yellow-100">
             <div className="flex items-start justify-between mb-3">
               <p className="text-3xl">0</p>
-              <div className="bg-yellow-500 w-2 h-2"></div>
+              <div className="bg-yellow-500 rounded-full w-2 h-2"></div>
             </div>
             <p className="text-neutral-500 text-sm">Working slower</p>
           </div>
           <div className=" p-4 w-25 rounded-md bg-white border-2 border-gray-300 hover:border-red-200">
             <div className="flex items-start justify-between mb-3">
               <p className="text-3xl">1</p>
-              <div className="bg-red-700 w-2 h-2"></div>
+              <div className="bg-red-700 rounded-full w-2 h-2"></div>
             </div>
             <p className="text-neutral-500 text-sm">Not working</p>
           </div>
@@ -37,7 +37,7 @@ const View = () => {
           <div className="hidden sm:block text-neutral-500 text-sm">
             Sort by: All sites
           </div>
-          <Ellipsis className="sm:hidden" />
+          <Ellipsis className="sm:hidden cursor-pointer" />
         </div>
         <div className="hidden sm:block overflow-auto h-full scrollbar-hide">
           <SitesList />

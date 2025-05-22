@@ -14,6 +14,9 @@ import { Input } from "@/components/ui/input";
 import Testimonials from "../Component/Testimonials";
 import Pricings from "@/Component/Pricings";
 import Features from "@/Component/Features";
+import Chart1 from "@/Component/Chart1";
+import Chart2 from "@/Component/Chart2";
+import Chart3 from "@/Component/Chart3";
 
 const Home = () => {
   return (
@@ -51,36 +54,55 @@ const Home = () => {
           Lightning-fast, developer-friendly uptime{" "}
           <span className="block">monitoring + instant alerts.</span>
         </p>
-        <div className="flex items-center justify-center gap-5">
-          <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
-            <div className="rounded-full bg-black px-5 py-2 ">
-              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
-                Try Free for 14 Days
-              </span>
+        <div className="flex flex-col gap-10 items-center">
+          <div className="flex items-center justify-center gap-5">
+            <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
+              <div className="rounded-full bg-black px-5 py-2">
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
+                  Try Free for 14 Days
+                </span>
+              </div>
+            </div>
+            <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
+              <div className="rounded-full bg-black px-5 py-2 ">
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
+                  View Demo Site
+                </span>
+              </div>
             </div>
           </div>
-          <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
-            <div className="rounded-full bg-black px-5 py-2 ">
-              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
-                View Demo Site
-              </span>
-            </div>
+          {/* CHARTS */}
+          <div className="flex w-full flex-col lg:flex-row items-center justify-center overflow-hidden gap-5 mb-5">
+            <Chart1 />
+            <Chart3 />
+            <Chart2 />
           </div>
         </div>
-        {/* CHARTS */}
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
         <div>
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-50% to-sky-300">
             TRUSTED BY LEADING BRANDS
           </span>
-          <div className="flex justify-around text-neutral-400 my-3">
-            <div>Halimark</div>
-            <div>Aircell</div>
-            <div>Qatar Air</div>
-            <div>Lionix</div>
-            <div>pizzaHut</div>
+          <div className="flex items-center justify-between text-neutral-400 my-3">
+            <div className="flex items-center mr-2">
+              <img className="w-7" src="/src/assets/Hallmark.jpg" />
+              <div>Halimark</div>
+            </div>
+            <div className="flex items-center mr-2">
+              <img className="w-7" src="/src/assets/Aircell.jpg" />
+              <div>Aircell</div>
+            </div>
+            <div className="flex items-center text-nowrap mr-2">
+              <img className="w-7" src="/src/assets/Quatarair.jpg" />
+              <div>Qatar Air</div>
+            </div>
+            <div className="flex items-center mr-2">
+              <img className="w-7" src="/src/assets/Lionix.jpg" />
+              <div>Lionix</div>
+            </div>
+            <div className="flex items-center mr-2">
+              <img className="w-7" src="/src/assets/pizzahut.jpg" />
+              <div>pizzaHut</div>
+            </div>
           </div>
         </div>
       </div>
@@ -134,6 +156,7 @@ const Home = () => {
         </div>
       </div>
       {/* REVIEWS */}
+      <img src="/src/assets/Reviews.jpg" />
       <div className="px-7 mt-10">
         <div className="flex justify-between items-baseline">
           <div>
@@ -169,7 +192,7 @@ const Home = () => {
       </div>
       {/* FOOTER */}
       <div className="px-7">
-        <div className="flex gap-5">
+        <div className="flex gap-5 justify-evenly">
           <div className="text-left">
             <div>Platform</div>
             <div className="text-neutral-400/80 mt-7">
