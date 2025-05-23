@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../assets/UptimePulseLogo.png";
 import {
   ArrowRight,
@@ -17,8 +17,19 @@ import Features from "@/Component/Features";
 import Chart1 from "@/Component/Chart1";
 import Chart2 from "@/Component/Chart2";
 import Chart3 from "@/Component/Chart3";
+import { SignInButton, SignUpButton, useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const { isSignedIn } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      navigate("/dashboard");
+    }
+  }, [isSignedIn, navigate]);
+
   return (
     <div className="bg-black text-white py-5">
       {/* HEADER */}
@@ -33,11 +44,13 @@ const Home = () => {
           <div>Features</div>
           <div>Pricing</div>
         </div>
-        <div className="rainbow rounded-2xl p-[1px]">
-          <div className="bg-black rounded-2xl py-1.5 px-4 text-xs cursor-pointer text-white hover:text-neutral-300 ">
-            Login
+        <SignInButton mode="modal">
+          <div className="rainbow rounded-2xl p-[1px]">
+            <div className="bg-black rounded-2xl py-1.5 px-4 text-xs cursor-pointer text-white hover:text-neutral-300 ">
+              Login
+            </div>
           </div>
-        </div>
+        </SignInButton>
       </header>
       {/* CTA */}
       <div className="text-center mt-10 px-7">
@@ -56,13 +69,15 @@ const Home = () => {
         </p>
         <div className="flex flex-col gap-10 items-center">
           <div className="flex items-center justify-center gap-5">
-            <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
-              <div className="rounded-full bg-black px-5 py-2">
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
-                  Try Free for 14 Days
-                </span>
+            <SignUpButton mode="modal">
+              <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
+                <div className="rounded-full bg-black px-5 py-2">
+                  <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">
+                    Try Free for 14 Days
+                  </span>
+                </div>
               </div>
-            </div>
+            </SignUpButton>
             <div className="rainbow rounded-full p-[0.8px] cursor-pointer">
               <div className="rounded-full bg-black px-5 py-2 ">
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-50% to-sky-400">

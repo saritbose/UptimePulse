@@ -1,3 +1,4 @@
+import { SignOutButton, SignUpButton, UserButton } from "@clerk/clerk-react";
 import {
   AlignJustify,
   Bird,
@@ -14,9 +15,7 @@ const Navbar = () => {
     <div className=" sm:bg-blue-600 bg-white">
       <div className="hidden sm:flex flex-col justify-between h-screen w-12">
         <div className="flex flex-col gap-2 items-center pt-3">
-          <div className="rounded-lg bg-white w-8 h-8 text-center text-lg">
-            T
-          </div>
+          <UserButton />
           <div className="rounded-lg bg-white w-8 h-8 text-center text-xl cursor-pointer">
             +
           </div>
@@ -25,9 +24,11 @@ const Navbar = () => {
           <div className="rounded-lg bg-white w-8 h-8 p-1.5 cursor-pointer ">
             <Settings size={20} />
           </div>
-          <div className="rounded-lg bg-white w-8 h-8 p-1.5 cursor-pointer">
-            <LogOut size={20} />
-          </div>
+          <SignOutButton>
+            <div className="rounded-lg bg-white w-8 h-8 p-1.5 cursor-pointer">
+              <LogOut size={20} />
+            </div>
+          </SignOutButton>
         </div>
         <div className="flex flex-col gap-2 items-center pb-3">
           <div>
