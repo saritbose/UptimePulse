@@ -3,35 +3,16 @@ import SitesList from "./SitesList";
 import { Ellipsis, Globe, Plus } from "lucide-react";
 import UrlModal from "./UrlModal";
 
-const View = () => {
+const View = ({ urls, setUrls }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [url, setUrl] = useState("");
+  const [addUrl, setAddUrl] = useState("");
 
   const handleSave = () => {
     setIsOpen(false);
-    setUrl("");
+    setAddUrl("");
+    window.location.reload();
   };
 
-  // useEffect(() => {
-  //   const storeUrl = async () => {
-  //     try {
-  //       const token = await getToken();
-  //       const urls = { userId: user.id, url: url };
-  //       await axios.post(
-  //         `${backend_url}/api/url/addUrl`,
-  //         { urls },
-  //         {
-  //           headers: { Authorization: `Bearer ${token}` },
-  //         }
-  //       );
-  //     } catch (error) {
-  //       console.error("Url not added", error);
-  //     }
-  //   };
-  //   if (user) {
-  //     storeUrl();
-  //   }
-  // }, [user]);
   return (
     <div className=" flex justify-start sm:mt-10 sm:mx-10 sm:mb-10">
       <div className="flex-auto overflow-hidden">
@@ -61,7 +42,7 @@ const View = () => {
         <div className="flex justify-between items-center mt-5 mb-0 sm:mb-5 mx-5">
           <div className="flex gap-2 items-center">
             <Globe className="text-blue-500" size={20} />
-            <p className="text-neutral-500 text-sm">6 sites</p>
+            <p className="text-neutral-500 text-sm">{urls.length} sites</p>
           </div>
           <div className="hidden sm:block text-neutral-500 text-sm">
             Sort by: All sites
@@ -70,16 +51,7 @@ const View = () => {
         </div>
         <div className="h-[63%]">
           <div className="h-full hidden sm:block overflow-auto scrollbar-hide">
-            <SitesList />
-            <SitesList />
-            <SitesList />
-            <SitesList />
-            <SitesList />
-            <SitesList />
-            <SitesList />
-            <SitesList />
-            <SitesList />
-            <SitesList />
+            <SitesList urls={urls} setUrls={setUrls} />
           </div>
         </div>
         <div
@@ -92,8 +64,8 @@ const View = () => {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           onSave={handleSave}
-          url={url}
-          setUrl={setUrl}
+          url={addUrl}
+          setUrl={setAddUrl}
         />
       </div>
     </div>

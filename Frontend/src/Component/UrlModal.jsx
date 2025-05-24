@@ -1,6 +1,6 @@
 import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 
 const UrlModal = ({ isOpen, onClose, onSave, url, setUrl }) => {
   const { user } = useUser();

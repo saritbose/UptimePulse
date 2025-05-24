@@ -3,7 +3,19 @@ import User from "../models/User.js";
 
 export const getUrl = async (req, res) => {};
 
-export const getUrls = async (req, res) => {};
+export const getUrls = async (req, res) => {
+  try {
+    const clerkId = req.auth.userId;
+    const userId = await User.findOne({ clerkId: clerkId });
+    if (!userId) {
+      return res.json({ success: false, message: "User not found" });
+    }
+    const urls = await Monitor.find({ user: userId._id });
+    return res.json({ urls });
+  } catch (error) {
+    console.log("No available urls");
+  }
+};
 
 export const addUrl = async (req, res) => {
   const { userId, url } = req.body;
