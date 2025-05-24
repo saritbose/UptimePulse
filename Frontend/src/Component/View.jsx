@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import SitesList from "./SitesList";
-import { AlignCenter, Ellipsis, Globe } from "lucide-react";
+import { Ellipsis, Globe, Plus } from "lucide-react";
+import UrlModal from "./UrlModal";
 
 const View = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [url, setUrl] = useState("");
+
+  const handleSave = () => {
+    setIsOpen(false);
+    setUrl("");
+  };
+
+  // useEffect(() => {
+  //   const storeUrl = async () => {
+  //     try {
+  //       const token = await getToken();
+  //       const urls = { userId: user.id, url: url };
+  //       await axios.post(
+  //         `${backend_url}/api/url/addUrl`,
+  //         { urls },
+  //         {
+  //           headers: { Authorization: `Bearer ${token}` },
+  //         }
+  //       );
+  //     } catch (error) {
+  //       console.error("Url not added", error);
+  //     }
+  //   };
+  //   if (user) {
+  //     storeUrl();
+  //   }
+  // }, [user]);
   return (
     <div className=" flex justify-start sm:mt-10 sm:mx-10 sm:mb-10">
       <div className="flex-auto overflow-hidden">
@@ -39,18 +68,33 @@ const View = () => {
           </div>
           <Ellipsis className="sm:hidden cursor-pointer" />
         </div>
-        <div className="hidden sm:block overflow-auto h-full scrollbar-hide">
-          <SitesList />
-          <SitesList />
-          <SitesList />
-          <SitesList />
-          <SitesList />
-          <SitesList />
-          <SitesList />
-          <SitesList />
-          <SitesList />
-          <SitesList />
+        <div className="h-[63%]">
+          <div className="h-full hidden sm:block overflow-auto scrollbar-hide">
+            <SitesList />
+            <SitesList />
+            <SitesList />
+            <SitesList />
+            <SitesList />
+            <SitesList />
+            <SitesList />
+            <SitesList />
+            <SitesList />
+            <SitesList />
+          </div>
         </div>
+        <div
+          onClick={() => setIsOpen(true)}
+          className="w-full group bg-white rounded-md h-18 p-4 hidden sm:flex items-center justify-center border-gray-300 cursor-pointer"
+        >
+          <Plus className="text-neutral-500" />
+        </div>
+        <UrlModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          onSave={handleSave}
+          url={url}
+          setUrl={setUrl}
+        />
       </div>
     </div>
   );
