@@ -32,4 +32,12 @@ export const addUrl = async (req, res) => {
 
 export const editUrl = async (req, res) => {};
 
-export const deleteUrl = async (req, res) => {};
+export const deleteUrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Monitor.findByIdAndDelete(id);
+    res.json({ success: true, message: "Url deleted" });
+  } catch (error) {
+    res.json({ success: false, message: "Url not deleted" });
+  }
+};
