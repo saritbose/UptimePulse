@@ -1,29 +1,51 @@
 import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 
-const UrlModal = ({ isOpen, onClose, onSave, url, setUrl }) => {
+const UrlModal = ({ isOpen, onClose, onSave, url, setUrl, monitor }) => {
   const { user } = useUser();
   const { getToken } = useAuth();
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
-  if (!isOpen) return null;
-
-  const storeUrl = async () => {
+  const handleSubmit = async () => {
+    const token = await getToken();
+    if (!url) {
+      return;
+    }
     try {
-      const token = await getToken();
-      await axios.post(
-        `${backend_url}/api/url/addUrl`,
-        { userId: user.id, url: url },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      if (monitor) {
+        await axios.put(
+          `${backend_url}/api/url/editUrl/${monitor._id}`,
+          { url },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      } else {
+        await axios.post(
+          `${backend_url}/api/url/addUrl`,
+          { userId: user.id, url: url },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
       await onSave();
+      onClose();
     } catch (error) {
-      console.error("Url not added", error);
+      console.error("URL action failed", error);
     }
   };
+
+  useEffect(() => {
+    if (monitor) {
+      setUrl(monitor.url);
+    } else {
+      setUrl("");
+    }
+  }, [monitor]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-transparent backdrop-blur-xs flex justify-center items-center z-50">
@@ -44,10 +66,10 @@ const UrlModal = ({ isOpen, onClose, onSave, url, setUrl }) => {
             Cancel
           </button>
           <button
-            onClick={() => (user ? storeUrl() : null)}
+            onClick={handleSubmit}
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
-            Save
+            {monitor ? "Save" : "Add"}
           </button>
         </div>
       </div>

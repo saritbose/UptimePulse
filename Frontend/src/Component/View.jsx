@@ -6,6 +6,7 @@ import UrlModal from "./UrlModal";
 const View = ({ urls, setUrls }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [addUrl, setAddUrl] = useState("");
+  const [selectedMonitor, setSelectedMonitor] = useState(null);
 
   const handleSave = () => {
     setIsOpen(false);
@@ -51,7 +52,14 @@ const View = ({ urls, setUrls }) => {
         </div>
         <div className="h-[63%]">
           <div className="h-full hidden sm:block overflow-auto scrollbar-hide">
-            <SitesList urls={urls} setUrls={setUrls} />
+            <SitesList
+              urls={urls}
+              setUrls={setUrls}
+              onEdit={(monitor) => {
+                setSelectedMonitor(monitor);
+                setIsOpen(true);
+              }}
+            />
           </div>
         </div>
         <div
@@ -66,6 +74,7 @@ const View = ({ urls, setUrls }) => {
           onSave={handleSave}
           url={addUrl}
           setUrl={setAddUrl}
+          monitor={selectedMonitor}
         />
       </div>
     </div>

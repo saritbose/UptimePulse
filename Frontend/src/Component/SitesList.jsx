@@ -2,10 +2,10 @@ import { useAuth } from "@clerk/clerk-react";
 import axios from "axios";
 import React from "react";
 
-const SitesList = ({ urls, setUrls }) => {
+const SitesList = ({ urls, setUrls, onEdit }) => {
   const { getToken } = useAuth();
-
   const backend_url = import.meta.env.VITE_BACKEND_URL;
+
   const handleDelete = async (id) => {
     try {
       const token = await getToken();
@@ -34,7 +34,9 @@ const SitesList = ({ urls, setUrls }) => {
         <div>86</div>
       </div>
       <div className="hidden group-hover:flex gap-2 absolute bottom-2.5 right-2 text-xs text-blue-600 cursor-pointer bg-white h-2">
-        <p className="hover:text-blue-500">Edit</p>
+        <p onClick={() => onEdit(monitor)} className="hover:text-blue-500">
+          Edit
+        </p>
         <p
           onClick={() => handleDelete(monitor._id)}
           className="hover:text-blue-500"

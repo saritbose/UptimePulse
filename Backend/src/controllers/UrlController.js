@@ -30,7 +30,16 @@ export const addUrl = async (req, res) => {
   }
 };
 
-export const editUrl = async (req, res) => {};
+export const editUrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { url } = req.body;
+    await Monitor.findByIdAndUpdate(id, { url });
+    res.json({ success: true, message: "Successfully updated" });
+  } catch (error) {
+    res.json({ success: true, message: "Not updated" });
+  }
+};
 
 export const deleteUrl = async (req, res) => {
   try {
