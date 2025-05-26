@@ -1,12 +1,49 @@
 import { Clock, Ellipsis, TrendingUp } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SitesDetail from "./SitesDetail";
+import axios from "axios";
+import { useAuth } from "@clerk/clerk-react";
 
-const Details = () => {
+const Details = ({ id, sitesDropdown, urls, setSite }) => {
+  const { getToken } = useAuth();
+  const [monitor, setMonitor] = useState([]);
+  const backend_url = import.meta.env.VITE_BACKEND_URL;
+
+  useEffect(() => {
+    const fetchUrl = async () => {
+      try {
+        const token = await getToken();
+        const res = await axios.get(`${backend_url}/api/url/getUrl/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setMonitor(res.data.selectedMonitor);
+      } catch (error) {
+        console.error("Url not fetched", error);
+      }
+    };
+    fetchUrl();
+  }, [id]);
+  console.log(monitor);
+
   return (
-    <div className="bg-white rounded-md py-4 px-6 w-full sm:mt-10 sm:mr-10 sm:mb-10 overflow-hidden h-[42.5%] sm:h-auto">
+    <div className="relative bg-white rounded-md py-4 px-6 w-full sm:mt-10 sm:mr-10 sm:mb-10 overflow-hidden h-[42.5%] sm:h-auto">
+      {sitesDropdown ? (
+        <div className="absolute bg-white sm:hidden border border-neutral-300 shadow-2xl right-5 w-48 h-fit overflow-y-auto">
+          {urls.map((monitor, index) => (
+            <div
+              key={index}
+              onClick={() => setSite(monitor._id)}
+              className="h-8 pl-1 cursor-pointer hover:bg-gray-100"
+            >
+              {monitor.url}
+            </div>
+          ))}
+        </div>
+      ) : null}
       <div className="flex justify-between items-center mb-2">
-        <div className="font-semibold">www.hello.com</div>
+        <div className="font-semibold">
+          {monitor.url ? monitor.url : "No URL selected"}
+        </div>
         <Ellipsis className="text-neutral-500 hidden sm:block cursor-pointer" />
       </div>
       <div className="flex justify-between items-center mb-2 text-neutral-500 text-xs">

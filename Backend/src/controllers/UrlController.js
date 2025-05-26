@@ -1,7 +1,15 @@
 import Monitor from "../models/Monitor.js";
 import User from "../models/User.js";
 
-export const getUrl = async (req, res) => {};
+export const getUrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const selectedMonitor = await Monitor.findById(id);
+    return res.json({ selectedMonitor });
+  } catch (error) {
+    res.json({ success: false, message: "Url not selected" });
+  }
+};
 
 export const getUrls = async (req, res) => {
   try {

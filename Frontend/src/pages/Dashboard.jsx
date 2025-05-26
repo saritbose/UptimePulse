@@ -9,6 +9,9 @@ const Dashboard = () => {
   const { user } = useUser();
   const { getToken } = useAuth();
   const [urls, setUrls] = useState([]);
+  const [site, setSite] = useState("");
+  const [mobileNavbar, setMobileNavbar] = useState(false);
+  const [sitesDropdown, setSitesDropdown] = useState(false);
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
@@ -43,14 +46,26 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row rounded-lg h-screen w-screen overflow-hidden">
+    <div className=" flex flex-col sm:flex-row rounded-lg h-screen w-screen overflow-hidden">
       {/* NAVBAR */}
-      <Navbar />
+      <Navbar mobileNavbar={mobileNavbar} setMobileNavbar={setMobileNavbar} />
       <div className="relative bg-white sm:bg-neutral-200 flex-auto flex flex-col sm:flex-row">
         {/* VIEW SECTION */}
-        <View urls={urls} setUrls={setUrls} />
+        <View
+          urls={urls}
+          setUrls={setUrls}
+          setSite={setSite}
+          mobileNavbar={mobileNavbar}
+          sitesDropdown={sitesDropdown}
+          setSitesDropdown={setSitesDropdown}
+        />
         {/* DETAILS SECTION */}
-        <Details />
+        <Details
+          id={site}
+          sitesDropdown={sitesDropdown}
+          urls={urls}
+          setSite={setSite}
+        />
       </div>
     </div>
   );

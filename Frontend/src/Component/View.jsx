@@ -1,9 +1,24 @@
 import React, { useState } from "react";
 import SitesList from "./SitesList";
-import { Ellipsis, Globe, Plus } from "lucide-react";
+import { Ellipsis, Globe, LogOut, Plus } from "lucide-react";
 import UrlModal from "./UrlModal";
+import { SignOutButton } from "@clerk/clerk-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const View = ({ urls, setUrls }) => {
+const View = ({
+  urls,
+  setUrls,
+  setSite,
+  mobileNavbar,
+  sitesDropdown,
+  setSitesDropdown,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [addUrl, setAddUrl] = useState("");
   const [selectedMonitor, setSelectedMonitor] = useState(null);
@@ -15,8 +30,22 @@ const View = ({ urls, setUrls }) => {
   };
 
   return (
-    <div className=" flex justify-start sm:mt-10 sm:mx-10 sm:mb-10">
+    <div className="relative flex justify-start sm:mt-10 sm:mx-10 sm:mb-10">
       <div className="flex-auto overflow-hidden">
+        <div
+          className={`absolute bg-white h-32 w-32 flex flex-col justify-evenly border-2 border-gray-300 ${
+            mobileNavbar ? "block" : "hidden"
+          }`}
+        >
+          <div className="text-xl ml-5 cursor-pointer hover:scale-110">
+            Setting
+          </div>
+          <SignOutButton>
+            <div className="text-xl ml-5 cursor-pointer hover:scale-110">
+              LogOut
+            </div>
+          </SignOutButton>
+        </div>
         <div className="flex gap-5 sm:gap-3 justify-center ">
           <div className=" p-4 w-25 rounded-md bg-white border-2 border-gray-300 hover:border-green-200">
             <div className="flex items-start justify-between mb-3">
@@ -40,21 +69,43 @@ const View = ({ urls, setUrls }) => {
             <p className="text-neutral-500 text-sm">Not working</p>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-5 mb-0 sm:mb-5 mx-5">
+        <div className="flex w-full justify-between items-center mt-5 mb-0 sm:mb-5 px-5 sm:px-0.5">
           <div className="flex gap-2 items-center">
             <Globe className="text-blue-500" size={20} />
             <p className="text-neutral-500 text-sm">{urls.length} sites</p>
           </div>
-          <div className="hidden sm:block text-neutral-500 text-sm">
-            Sort by: All sites
+          <div className="hidden sm:flex gap-0 items-baseline text-neutral-500 text-sm">
+            <span className="text-nowrap">Sort by:</span>
+            <Select>
+              <SelectTrigger className="w-[68%]">
+                <SelectValue placeholder="All Sites" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="recent">Recent</SelectItem>
+                <SelectItem value="2">2</SelectItem>
+                <SelectItem value="3">3</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-          <Ellipsis className="sm:hidden cursor-pointer" />
+          <div
+            onClick={() => setSitesDropdown(!sitesDropdown)}
+            className="sm:hidden"
+          >
+            {sitesDropdown ? (
+              <>
+                <Plus className="cursor-pointer rotate-45" />
+              </>
+            ) : (
+              <Ellipsis className="sm:hidden cursor-pointer" />
+            )}
+          </div>
         </div>
         <div className="h-[63%]">
           <div className="h-full hidden sm:block overflow-auto scrollbar-hide">
             <SitesList
               urls={urls}
               setUrls={setUrls}
+              setSite={setSite}
               onEdit={(monitor) => {
                 setSelectedMonitor(monitor);
                 setIsOpen(true);
@@ -64,7 +115,7 @@ const View = ({ urls, setUrls }) => {
         </div>
         <div
           onClick={() => setIsOpen(true)}
-          className="w-full group bg-white rounded-md h-18 p-4 hidden sm:flex items-center justify-center border-gray-300 cursor-pointer"
+          className="w-full group bg-white rounded-md h-15 p-4 hidden sm:flex items-center justify-center border-gray-300 cursor-pointer"
         >
           <Plus className="text-neutral-500" />
         </div>

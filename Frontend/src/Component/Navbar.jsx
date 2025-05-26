@@ -8,9 +8,9 @@ import {
   Plus,
   Settings,
 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ mobileNavbar, setMobileNavbar }) => {
   return (
     <div className=" sm:bg-blue-600 bg-white">
       <div className="hidden sm:flex flex-col justify-between h-screen w-12">
@@ -42,9 +42,18 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="sm:hidden flex justify-between items-center rounded-lg px-3 w-screen h-12">
-        <div className="rounded-lg flex items-center justify-center bg-slate-500/20  w-8 h-8">
-          <AlignJustify size={20} className="cursor-pointer" />
+      <div className=" sm:hidden flex justify-between items-center rounded-lg px-3 w-screen h-12">
+        <div
+          onClick={() => setMobileNavbar(!mobileNavbar)}
+          className=" rounded-lg flex items-center justify-center bg-slate-500/20  w-8 h-8"
+        >
+          {mobileNavbar ? (
+            <>
+              <Plus size={20} className="cursor-pointer rotate-45" />
+            </>
+          ) : (
+            <AlignJustify size={20} className="cursor-pointer" />
+          )}
         </div>
         <div className="rounded-lg flex justify-between items-center px-2 bg-slate-500/20 text-blue-600 w-8 h-8 text-3xl cursor-pointer">
           <Plus size={20} />
