@@ -36,7 +36,6 @@ export const pingUrl = async (req, res) => {
       status: "down",
       checkedAt: new Date(),
     });
-    console.error(`Ping failed for ${monitor.url}:`, error.message || error);
     res.json({ status: "down", error: error.message });
   }
 };

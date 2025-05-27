@@ -94,8 +94,6 @@ const Dashboard = () => {
     const fetchPingLogs = async () => {
       try {
         const token = await getToken();
-        console.log(selectedMonitor);
-
         const res = await axios.get(
           `${backend_url}/api/ping/log/${selectedMonitor._id}`,
           {
@@ -114,7 +112,6 @@ const Dashboard = () => {
       fetchPingLogs();
     }
   }, [selectedMonitor]);
-  console.log("Ping logs fetched:", pingLogs);
 
   return (
     <div className=" flex flex-col sm:flex-row rounded-lg h-screen w-screen overflow-hidden">
@@ -124,7 +121,6 @@ const Dashboard = () => {
         {/* VIEW SECTION */}
         <View
           urls={monitors}
-          setUrls={setMonitors}
           setSite={setSite}
           mobileNavbar={mobileNavbar}
           sitesDropdown={sitesDropdown}
@@ -146,7 +142,6 @@ const Dashboard = () => {
           setIsOpen={setIsUrlModalOpen}
           onEdit={onEdit}
           deleteUrl={handleDelete}
-          statusMap={statusMap}
           pingLogs={pingLogs}
           setSelectedMonitor={setSelectedMonitor}
         />

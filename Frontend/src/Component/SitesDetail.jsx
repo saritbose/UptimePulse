@@ -1,6 +1,6 @@
 import React from "react";
 
-const SitesDetail = ({ statusMap, id, pingLogs }) => {
+const SitesDetail = ({ id, pingLogs }) => {
   const logs = pingLogs.filter((log) => log.monitorId === id);
   return logs.map((log) => (
     <div key={log._id} className="grid grid-cols-[2fr_1fr_1fr] mb-5">
@@ -17,7 +17,6 @@ const SitesDetail = ({ statusMap, id, pingLogs }) => {
         <div>{`Site is currently ${log.status}`}</div>
       </div>
       <div className="text-right">
-        {" "}
         {new Date(log.checkedAt).toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",

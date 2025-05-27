@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import SitesDetail from "./SitesDetail";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
+import PingChart from "./ChartRealTime.jsx";
 
 const Details = ({
   id,
@@ -12,7 +13,6 @@ const Details = ({
   setIsOpen,
   onEdit,
   deleteUrl,
-  statusMap,
   pingLogs,
   setSelectedMonitor,
 }) => {
@@ -38,7 +38,7 @@ const Details = ({
   return (
     <div className="relative bg-white rounded-md py-4 px-6 w-full sm:mt-10 sm:mr-10 sm:mb-10 overflow-hidden h-[42.5%] sm:h-auto">
       {sitesDropdown ? (
-        <div className="absolute bg-white sm:hidden border border-neutral-300 shadow-2xl right-5 w-60 h-fit overflow-y-auto scrollbar-hide">
+        <div className="absolute bg-white sm:hidden border border-neutral-300 shadow-2xl right-5 w-60 h-fit z-50 overflow-y-auto scrollbar-hide">
           {urls.map((monitor, index) => (
             <div
               key={index}
@@ -69,7 +69,7 @@ const Details = ({
           ))}
           <div
             onClick={() => setIsOpen(true)}
-            className="flex justify-center items-center h-8 cursor-pointer hover:bg-gray-100"
+            className="flex justify-center border-t items-center h-8 cursor-pointer hover:bg-gray-100"
           >
             <Plus />
           </div>
@@ -88,15 +88,23 @@ const Details = ({
         </div>
         <div>Sort by: Day</div>
       </div>
-      <div>//CHARTS//</div>
-      <div className="flex justify-between gap-5 items-center mb-4 mt-5">
+      <div>
+        <PingChart pingLogs={pingLogs} />
+      </div>
+      <div className="flex justify-between gap-5 items-center mb-4 mt-6">
         <div className="flex gap-2 items-center">
           <TrendingUp className="text-blue-500" />
           <p className="text-neutral-500 text-sm cursor-pointer">Check Log</p>
         </div>
         <div className="flex gap-2 items-center">
           <Clock className="text-blue-500" />
-          <p className="text-neutral-500 text-sm">Last check 12:30</p>
+          <p className="text-neutral-500 text-sm">{`Last check ${new Date(
+            pingLogs[0]?.checkedAt
+          ).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          })}`}</p>
         </div>
       </div>
       <hr />
@@ -106,7 +114,7 @@ const Details = ({
         <div className="text-sm text-neutral-600 text-right">Response</div>
       </div>
       <div className="overflow-auto h-full scrollbar-hide">
-        <SitesDetail statusMap={statusMap} id={id} pingLogs={pingLogs} />
+        <SitesDetail id={id} pingLogs={pingLogs} />
       </div>
     </div>
   );

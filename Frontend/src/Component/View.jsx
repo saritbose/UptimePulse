@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SitesList from "./SitesList";
-import { Ellipsis, Globe, LogOut, Plus } from "lucide-react";
+import { Ellipsis, Globe, Plus } from "lucide-react";
 import UrlModal from "./UrlModal";
 import { SignOutButton } from "@clerk/clerk-react";
 import {
@@ -13,7 +13,6 @@ import {
 
 const View = ({
   urls,
-  setUrls,
   setSite,
   mobileNavbar,
   sitesDropdown,
@@ -117,24 +116,19 @@ const View = ({
             )}
           </div>
         </div>
-        <div className="h-[63%]">
+        <div className="h-[70%]">
           <div className="h-full hidden sm:block overflow-auto scrollbar-hide">
             <SitesList
               urls={urls}
-              setUrls={setUrls}
               setSite={setSite}
               onEdit={onEdit}
               statusMap={statusMap}
               deleteUrl={deleteUrl}
               setSelectedMonitor={setSelectedMonitor}
+              setIsOpen={setIsOpen}
+              setAddUrl={setAddUrl}
             />
           </div>
-        </div>
-        <div
-          onClick={() => setIsOpen(true)}
-          className="w-full group bg-white rounded-md h-15 p-4 hidden sm:flex items-center justify-center border-gray-300 cursor-pointer"
-        >
-          <Plus className="text-neutral-500" />
         </div>
         <UrlModal
           isOpen={isOpen}
