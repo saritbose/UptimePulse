@@ -1,10 +1,21 @@
-import { Clock, Ellipsis, TrendingUp } from "lucide-react";
+import { Clock, Delete, Edit, Ellipsis, Plus, TrendingUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import SitesDetail from "./SitesDetail";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
 
-const Details = ({ id, sitesDropdown, urls, setSite }) => {
+const Details = ({
+  id,
+  sitesDropdown,
+  urls,
+  setSite,
+  setIsOpen,
+  onEdit,
+  deleteUrl,
+  statusMap,
+  pingLogs,
+  setSelectedMonitor,
+}) => {
   const { getToken } = useAuth();
   const [monitor, setMonitor] = useState([]);
   const backend_url = import.meta.env.VITE_BACKEND_URL;
@@ -23,28 +34,52 @@ const Details = ({ id, sitesDropdown, urls, setSite }) => {
     };
     fetchUrl();
   }, [id]);
-  console.log(monitor);
 
   return (
     <div className="relative bg-white rounded-md py-4 px-6 w-full sm:mt-10 sm:mr-10 sm:mb-10 overflow-hidden h-[42.5%] sm:h-auto">
       {sitesDropdown ? (
-        <div className="absolute bg-white sm:hidden border border-neutral-300 shadow-2xl right-5 w-48 h-fit overflow-y-auto">
+        <div className="absolute bg-white sm:hidden border border-neutral-300 shadow-2xl right-5 w-60 h-fit overflow-y-auto scrollbar-hide">
           {urls.map((monitor, index) => (
             <div
               key={index}
-              onClick={() => setSite(monitor._id)}
-              className="h-8 pl-1 cursor-pointer hover:bg-gray-100"
+              onClick={() => {
+                setSite(monitor._id);
+                setSelectedMonitor(monitor);
+              }}
+              className="flex group justify-between items-baseline h-8 px-1 cursor-pointer hover:bg-gray-100"
             >
-              {monitor.url}
+              <p>{monitor.url}</p>
+              <div className="hidden group-hover:flex gap-2 ">
+                <p>
+                  <Edit
+                    onClick={() => onEdit(monitor)}
+                    size={12}
+                    className="hover:text-neutral-600"
+                  />
+                </p>
+                <p>
+                  <Delete
+                    onClick={() => deleteUrl(monitor._id)}
+                    size={12}
+                    className="hover:text-neutral-600"
+                  />
+                </p>
+              </div>
             </div>
           ))}
+          <div
+            onClick={() => setIsOpen(true)}
+            className="flex justify-center items-center h-8 cursor-pointer hover:bg-gray-100"
+          >
+            <Plus />
+          </div>
         </div>
       ) : null}
       <div className="flex justify-between items-center mb-2">
         <div className="font-semibold">
           {monitor.url ? monitor.url : "No URL selected"}
         </div>
-        <Ellipsis className="text-neutral-500 hidden sm:block cursor-pointer" />
+        <Ellipsis className="text-neutral-500 hidden sm:block" />
       </div>
       <div className="flex justify-between items-center mb-2 text-neutral-500 text-xs">
         <div className="flex gap-2 items-center">
@@ -71,35 +106,7 @@ const Details = ({ id, sitesDropdown, urls, setSite }) => {
         <div className="text-sm text-neutral-600 text-right">Response</div>
       </div>
       <div className="overflow-auto h-full scrollbar-hide">
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
-        <SitesDetail />
+        <SitesDetail statusMap={statusMap} id={id} pingLogs={pingLogs} />
       </div>
     </div>
   );

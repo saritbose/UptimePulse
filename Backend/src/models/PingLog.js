@@ -1,20 +1,19 @@
 import mongoose from "mongoose";
 
 const pingLogSchema = new mongoose.Schema({
-  monitor: {
+  monitorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Monitor",
+    required: true,
   },
   responseTime: {
     type: Number,
   },
-  statusCode: {
-    type: Number,
+  status: {
+    type: String,
+    enum: ["up", "slow", "down"],
   },
-  success: {
-    type: Boolean,
-  },
-  timestamp: {
+  checkedAt: {
     type: Date,
     default: Date.now,
   },

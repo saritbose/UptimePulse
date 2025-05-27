@@ -18,10 +18,29 @@ const View = ({
   mobileNavbar,
   sitesDropdown,
   setSitesDropdown,
+  statusMap,
+  isOpen,
+  setIsOpen,
+  selectedMonitor,
+  setSelectedMonitor,
+  onEdit,
+  deleteUrl,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [addUrl, setAddUrl] = useState("");
-  const [selectedMonitor, setSelectedMonitor] = useState(null);
+
+  const statusSummary = {
+    up: 0,
+    slow: 0,
+    down: 0,
+  };
+
+  if (statusMap && Object.keys(statusMap).length > 0) {
+    Object.values(statusMap).forEach((entry) => {
+      if (entry.status === "up") statusSummary.up++;
+      else if (entry.status === "slow") statusSummary.slow++;
+      else if (entry.status === "down") statusSummary.down++;
+    });
+  }
 
   const handleSave = () => {
     setIsOpen(false);
@@ -49,21 +68,21 @@ const View = ({
         <div className="flex gap-5 sm:gap-3 justify-center ">
           <div className=" p-4 w-25 rounded-md bg-white border-2 border-gray-300 hover:border-green-200">
             <div className="flex items-start justify-between mb-3">
-              <p className="text-3xl">10</p>
+              <p className="text-3xl">{statusSummary.up}</p>
               <div className="bg-green-700 rounded-full w-2 h-2"></div>
             </div>
             <p className="text-neutral-500 text-sm">Working fine</p>
           </div>
           <div className=" p-4 w-25 rounded-md bg-white border-2 border-gray-300 hover:border-yellow-100">
             <div className="flex items-start justify-between mb-3">
-              <p className="text-3xl">0</p>
+              <p className="text-3xl">{statusSummary.slow}</p>
               <div className="bg-yellow-500 rounded-full w-2 h-2"></div>
             </div>
             <p className="text-neutral-500 text-sm">Working slower</p>
           </div>
           <div className=" p-4 w-25 rounded-md bg-white border-2 border-gray-300 hover:border-red-200">
             <div className="flex items-start justify-between mb-3">
-              <p className="text-3xl">1</p>
+              <p className="text-3xl">{statusSummary.down}</p>
               <div className="bg-red-700 rounded-full w-2 h-2"></div>
             </div>
             <p className="text-neutral-500 text-sm">Not working</p>
@@ -92,9 +111,7 @@ const View = ({
             className="sm:hidden"
           >
             {sitesDropdown ? (
-              <>
-                <Plus className="cursor-pointer rotate-45" />
-              </>
+              <Plus className="cursor-pointer rotate-45" />
             ) : (
               <Ellipsis className="sm:hidden cursor-pointer" />
             )}
@@ -106,10 +123,10 @@ const View = ({
               urls={urls}
               setUrls={setUrls}
               setSite={setSite}
-              onEdit={(monitor) => {
-                setSelectedMonitor(monitor);
-                setIsOpen(true);
-              }}
+              onEdit={onEdit}
+              statusMap={statusMap}
+              deleteUrl={deleteUrl}
+              setSelectedMonitor={setSelectedMonitor}
             />
           </div>
         </div>

@@ -5,18 +5,20 @@ import "dotenv/config";
 import urlRouter from "./routes/urlRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { ClerkExpressWithAuth } from "@clerk/clerk-sdk-node";
+import pingRouter from "./routes/pingRoutes.js";
 
 connectDB();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 const port = process.env.PORT;
 
 app.use(ClerkExpressWithAuth());
 app.use("/api/user", userRouter);
 app.use("/api/url", urlRouter);
+app.use("/api/ping", pingRouter);
 
 app.listen(port, () => {
   console.log(`Server running on ${port}`);

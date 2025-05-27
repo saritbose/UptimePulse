@@ -5,7 +5,7 @@ export const getUrl = async (req, res) => {
   try {
     const { id } = req.params;
     const selectedMonitor = await Monitor.findById(id);
-    return res.json({ selectedMonitor });
+    res.json({ selectedMonitor });
   } catch (error) {
     res.json({ success: false, message: "Url not selected" });
   }
@@ -18,8 +18,8 @@ export const getUrls = async (req, res) => {
     if (!userId) {
       return res.json({ success: false, message: "User not found" });
     }
-    const urls = await Monitor.find({ user: userId._id });
-    return res.json({ urls });
+    const monitor = await Monitor.find({ user: userId._id });
+    return res.json({ monitor, success: true });
   } catch (error) {
     console.log("No available urls");
   }
