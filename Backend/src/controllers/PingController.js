@@ -1,6 +1,8 @@
 import Monitor from "../models/Monitor.js";
 import axios from "axios";
 import PingLog from "../models/PingLog.js";
+import User from "../models/User.js";
+import { sendEmail } from "../libs/sendEmails.js";
 
 export const pingUrl = async (req, res) => {
   const { id } = req.params;
@@ -36,6 +38,19 @@ export const pingUrl = async (req, res) => {
       status: "down",
       checkedAt: new Date(),
     });
+    const user = await User.findById(monitor.user);
+    if (user) {
+      await sendEmail(
+        user.email,
+        `🚨 Your site is DOWN: ${monitor.url}`,
+        `UptimePulse detected that your site ${
+          monitor.url
+        } is down as of ${new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}.`
+      );
+    }
     res.json({ status: "down", error: error.message });
   }
 };

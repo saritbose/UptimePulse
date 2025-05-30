@@ -8,7 +8,6 @@ const SitesList = ({
   statusMap,
   deleteUrl,
   setSelectedMonitor,
-  setAddUrl,
   setIsOpen,
 }) => {
   return (
@@ -61,7 +60,7 @@ const SitesList = ({
       <div
         onClick={() => {
           setIsOpen(true);
-          setAddUrl("");
+          setSelectedMonitor("");
         }}
         className="w-full group bg-white rounded-md h-15 p-4 hidden sm:flex items-center justify-center border-gray-300 cursor-pointer"
       >

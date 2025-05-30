@@ -33,7 +33,6 @@ const Dashboard = () => {
     } catch (error) {
       console.log("Not deleted", error);
     }
-    window.location.reload();
   };
 
   useEffect(() => {
@@ -63,20 +62,31 @@ const Dashboard = () => {
         setMonitors(monitorsData);
         const updatedStatus = {};
         for (const monitor of monitorsData) {
-          const pingRes = await axios.get(
-            `${backend_url}/api/ping/${monitor._id}`,
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          );
-          updatedStatus[monitor._id] = {
-            status: pingRes.data.status,
-            responseTime: pingRes.data.responseTime,
-            checkedAt: new Date().toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            }),
-          };
+          try {
+            const pingRes = await axios.get(
+              `${backend_url}/api/ping/${monitor._id}`,
+              {
+                headers: { Authorization: `Bearer ${token}` },
+              }
+            );
+            updatedStatus[monitor._id] = {
+              status: pingRes.data.status,
+              responseTime: pingRes.data.responseTime,
+              checkedAt: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+            };
+          } catch (error) {
+            updatedStatus[monitor._id] = {
+              status: "down",
+              responseTime: 0,
+              checkedAt: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+            };
+          }
         }
         setStatusMap(updatedStatus);
       } catch (error) {
@@ -85,7 +95,6 @@ const Dashboard = () => {
     };
 
     fetchMonitorsAndPing();
-
     const interval = setInterval(fetchMonitorsAndPing, 60000);
     return () => clearInterval(interval);
   }, []);

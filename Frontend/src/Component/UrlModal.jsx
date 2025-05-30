@@ -1,22 +1,33 @@
 import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-const UrlModal = ({ isOpen, onClose, onSave, url, setUrl, monitor }) => {
+const UrlModal = ({ isOpen, onClose, onSave, monitor }) => {
   const { user } = useUser();
   const { getToken } = useAuth();
+  const [urlInput, setUrlInput] = useState("");
   const backend_url = import.meta.env.VITE_BACKEND_URL;
+
+  useEffect(() => {
+    if (isOpen) {
+      if (monitor) {
+        setUrlInput(monitor.url);
+      } else {
+        setUrlInput("");
+      }
+    }
+  }, [isOpen, monitor]);
 
   const handleSubmit = async () => {
     const token = await getToken();
-    if (!url) {
+    if (!urlInput.trim()) {
       return;
     }
     try {
       if (monitor) {
         await axios.put(
           `${backend_url}/api/url/editUrl/${monitor._id}`,
-          { url },
+          { urlInput },
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -24,7 +35,7 @@ const UrlModal = ({ isOpen, onClose, onSave, url, setUrl, monitor }) => {
       } else {
         await axios.post(
           `${backend_url}/api/url/addUrl`,
-          { userId: user.id, url: url },
+          { userId: user.id, url: urlInput },
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -37,14 +48,6 @@ const UrlModal = ({ isOpen, onClose, onSave, url, setUrl, monitor }) => {
     }
   };
 
-  useEffect(() => {
-    if (monitor) {
-      setUrl(monitor.url);
-    } else {
-      setUrl("");
-    }
-  }, [monitor]);
-
   if (!isOpen) return null;
 
   return (
@@ -53,8 +56,8 @@ const UrlModal = ({ isOpen, onClose, onSave, url, setUrl, monitor }) => {
         <h2 className="text-xl font-semibold mb-4">Add Website</h2>
         <input
           type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          value={urlInput}
+          onChange={(e) => setUrlInput(e.target.value)}
           placeholder="Enter website URL"
           className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
         />

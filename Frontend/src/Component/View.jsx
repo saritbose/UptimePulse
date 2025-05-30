@@ -126,7 +126,6 @@ const View = ({
               deleteUrl={deleteUrl}
               setSelectedMonitor={setSelectedMonitor}
               setIsOpen={setIsOpen}
-              setAddUrl={setAddUrl}
             />
           </div>
         </div>
@@ -134,8 +133,6 @@ const View = ({
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           onSave={handleSave}
-          url={addUrl}
-          setUrl={setAddUrl}
           monitor={selectedMonitor}
         />
       </div>
