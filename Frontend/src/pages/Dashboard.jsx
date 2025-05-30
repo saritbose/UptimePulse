@@ -47,7 +47,38 @@ const Dashboard = () => {
       }
     };
     if (user) {
+      console.log("Frontend user data:", user);
+
       storeUser();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const selectedPlan = localStorage.getItem("selectedPlan");
+    if (selectedPlan === "pro" || selectedPlan === "team") {
+      const startCheckout = async () => {
+        try {
+          const token = await getToken();
+          const email = user?.primaryEmailAddress?.emailAddress;
+          const res = await axios.post(
+            `${backend_url}/api/checkout/pay`,
+            {
+              email,
+              plan: selectedPlan,
+            },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          window.location.href = res.data.url;
+        } catch (error) {
+          console.error("❌ Error creating checkout session", error);
+          alert("Failed to start checkout. Please try again.");
+        } finally {
+          localStorage.removeItem("selectedPlan");
+        }
+      };
+      startCheckout();
     }
   }, [user]);
 

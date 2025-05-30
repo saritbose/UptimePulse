@@ -6,6 +6,7 @@ import urlRouter from "./routes/urlRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { ClerkExpressWithAuth } from "@clerk/clerk-sdk-node";
 import pingRouter from "./routes/pingRoutes.js";
+import checkoutRouter from "./routes/checkoutRoutes.js";
 
 connectDB();
 
@@ -19,6 +20,7 @@ app.use(ClerkExpressWithAuth());
 app.use("/api/user", userRouter);
 app.use("/api/url", urlRouter);
 app.use("/api/ping", pingRouter);
+app.use("/api/checkout", checkoutRouter);
 
 app.listen(port, () => {
   console.log(`Server running on ${port}`);

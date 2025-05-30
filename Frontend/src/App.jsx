@@ -6,13 +6,15 @@ import Dashboard from "./pages/Dashboard";
 import { RedirectToSignIn, useUser } from "@clerk/clerk-react";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentCancel";
 
 const ProtectedRoute = ({ children }) => {
   const { isSignedIn, isLoaded } = useUser();
   if (!isLoaded) {
     return null;
   }
-  return isSignedIn ? children : <RedirectToSignIn />;
+  return isSignedIn ? children : <Home />;
 };
 
 const App = () => {
@@ -31,6 +33,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path={"/success"} element={<PaymentSuccess />} />
+        <Route path={"/cancel"} element={<PaymentCancel />} />
       </Routes>
     </>
   );

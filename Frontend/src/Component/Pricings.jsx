@@ -8,8 +8,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { SignUpButton } from "@clerk/clerk-react";
 
 const Pricings = () => {
+  const handlePlanClick = (plan) => {
+    localStorage.setItem("selectedPlan", plan);
+  };
+
   return (
     <>
       <Card className="bg-black shadow text-white border-0 hover:border hover:border-pink-800/80 hover:shadow-pink-800 hover:shadow-md">
@@ -27,7 +32,11 @@ const Pricings = () => {
           <p>Public status page</p>
         </CardContent>
         <CardFooter className="justify-center">
-          <Button className="bg-neutral-950 cursor-pointer">Get Started</Button>
+          <SignUpButton>
+            <Button className="bg-neutral-950 cursor-pointer">
+              Get Started
+            </Button>
+          </SignUpButton>
         </CardFooter>
       </Card>
       <Card className="relative bg-black shadow text-white border-pink-800/80 hover:border-pink-800 hover:shadow-md hover:shadow-pink-800">
@@ -50,9 +59,14 @@ const Pricings = () => {
           <p>Charts PDF</p>
         </CardContent>
         <CardFooter className="justify-center">
-          <Button className="cursor-pointer bg-gradient-to-r from-red-500 via-50% to-sky-300 transform transition-transform duration-300 hover:scale-110">
-            Start Free Trial
-          </Button>
+          <SignUpButton mode="modal">
+            <Button
+              onClick={() => handlePlanClick("pro")}
+              className="cursor-pointer bg-gradient-to-r from-red-500 via-50% to-sky-300 transform transition-transform duration-300 hover:scale-110"
+            >
+              Start Free Trial
+            </Button>
+          </SignUpButton>
         </CardFooter>
       </Card>
       <Card className="bg-black shadow text-white border-0 hover:border hover:border-pink-800/80 hover:shadow-md hover:shadow-pink-800">
@@ -70,9 +84,14 @@ const Pricings = () => {
           <p>SLA Reports</p>
         </CardContent>
         <CardFooter className="justify-center">
-          <Button className="bg-neutral-950 cursor-pointer">
-            Contact Sales
-          </Button>
+          <SignUpButton>
+            <Button
+              onClick={() => handlePlanClick("team")}
+              className="bg-neutral-950 cursor-pointer"
+            >
+              Contact Sales
+            </Button>
+          </SignUpButton>
         </CardFooter>
       </Card>
     </>
