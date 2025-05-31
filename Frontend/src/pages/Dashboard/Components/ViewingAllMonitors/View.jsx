@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/select";
 import SitesList from "./Components/SitesList";
 import UrlModal from "./Components/UrlModal";
-import { toast } from "react-toastify";
 
 const View = ({
   urls,
