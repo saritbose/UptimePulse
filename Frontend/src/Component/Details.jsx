@@ -44,7 +44,7 @@ const Details = ({
               key={index}
               onClick={() => {
                 setSite(monitor._id);
-                setSelectedMonitor(monitor);
+                setSelectedMonitor("");
               }}
               className="flex group justify-between items-baseline h-8 px-1 cursor-pointer hover:bg-gray-100"
             >
@@ -86,7 +86,7 @@ const Details = ({
           <p>HTTP(s)</p>
           <p>Size:9.1MB</p>
         </div>
-        <div>Sort by: Day</div>
+        <div>Sort by: Hour</div>
       </div>
       <div>
         <PingChart pingLogs={pingLogs} />

@@ -24,8 +24,11 @@ const View = ({
   setSelectedMonitor,
   onEdit,
   deleteUrl,
+  fetchUsage,
+  usage,
 }) => {
   const [addUrl, setAddUrl] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const statusSummary = {
     up: 0,
@@ -41,11 +44,17 @@ const View = ({
     });
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setIsOpen(false);
     setAddUrl("");
+    await fetchUsage();
     window.location.reload();
   };
+
+  const filteredUrls =
+    statusFilter === "all"
+      ? urls
+      : urls.filter((url) => statusMap[url._id]?.status === statusFilter);
 
   return (
     <div className="relative flex justify-start sm:mt-10 sm:mx-10 sm:mb-10">
@@ -90,18 +99,21 @@ const View = ({
         <div className="flex w-full justify-between items-center mt-5 mb-0 sm:mb-5 px-5 sm:px-0.5">
           <div className="flex gap-2 items-center">
             <Globe className="text-blue-500" size={20} />
-            <p className="text-neutral-500 text-sm">{urls.length} sites</p>
+            <p className="text-neutral-500 text-sm">
+              {usage.used}/{usage.total === Infinity ? "∞" : usage.total} sites
+            </p>
           </div>
           <div className="hidden sm:flex gap-0 items-baseline text-neutral-500 text-sm">
             <span className="text-nowrap">Sort by:</span>
-            <Select>
+            <Select onValueChange={(val) => setStatusFilter(val)}>
               <SelectTrigger className="w-[68%]">
                 <SelectValue placeholder="All Sites" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="recent">Recent</SelectItem>
-                <SelectItem value="2">2</SelectItem>
-                <SelectItem value="3">3</SelectItem>
+                <SelectItem value="all">All Sites</SelectItem>
+                <SelectItem value="up">Working fine</SelectItem>
+                <SelectItem value="slow">Working slow</SelectItem>
+                <SelectItem value="down">Not working</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -119,13 +131,14 @@ const View = ({
         <div className="h-[70%]">
           <div className="h-full hidden sm:block overflow-auto scrollbar-hide">
             <SitesList
-              urls={urls}
+              urls={filteredUrls}
               setSite={setSite}
               onEdit={onEdit}
               statusMap={statusMap}
               deleteUrl={deleteUrl}
               setSelectedMonitor={setSelectedMonitor}
               setIsOpen={setIsOpen}
+              usage={usage}
             />
           </div>
         </div>

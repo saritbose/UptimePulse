@@ -12,7 +12,7 @@ const monitorSchema = new mongoose.Schema(
     },
     interval: {
       type: Number,
-      default: 300,
+      default: 5 * 60 * 1000,
     },
     status: {
       type: String,
@@ -21,6 +21,7 @@ const monitorSchema = new mongoose.Schema(
     },
     lastChecked: {
       type: Date,
+      default: null,
     },
     isPaused: {
       type: Boolean,

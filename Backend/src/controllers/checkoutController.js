@@ -3,8 +3,6 @@ import User from "../models/User.js";
 
 export const createCheckoutSession = async (req, res) => {
   const { email, plan } = req.body;
-  console.log("Stripe:", email, plan);
-
   const priceMap = {
     pro: "price_1RULBuSENKykVPzB7PxGn7Nf",
     team: "price_1RULCJSENKykVPzBVpNci7il",

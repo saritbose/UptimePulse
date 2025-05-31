@@ -3,6 +3,7 @@ import {
   addUrl,
   deleteUrl,
   editUrl,
+  getMonitorUsage,
   getUrl,
   getUrls,
 } from "../controllers/UrlController.js";
@@ -14,5 +15,6 @@ urlRouter.get("/getUrls", getUrls);
 urlRouter.post("/addUrl", addUrl);
 urlRouter.put("/editUrl/:id", editUrl);
 urlRouter.delete("/deleteUrl/:id", deleteUrl);
+urlRouter.get("/usage", getMonitorUsage);
 
 export default urlRouter;

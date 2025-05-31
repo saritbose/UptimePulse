@@ -9,7 +9,13 @@ const SitesList = ({
   deleteUrl,
   setSelectedMonitor,
   setIsOpen,
+  usage,
 }) => {
+  const addNewUrl = () => {
+    setIsOpen(true);
+    setSelectedMonitor("");
+  };
+
   return (
     <div>
       {urls.map((monitor, index) => (
@@ -59,8 +65,7 @@ const SitesList = ({
       ))}
       <div
         onClick={() => {
-          setIsOpen(true);
-          setSelectedMonitor("");
+          usage.used !== usage.total ? addNewUrl() : null;
         }}
         className="w-full group bg-white rounded-md h-15 p-4 hidden sm:flex items-center justify-center border-gray-300 cursor-pointer"
       >

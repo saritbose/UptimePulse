@@ -16,6 +16,8 @@ const Dashboard = () => {
   const [pingLogs, setPingLogs] = useState([]);
   const [monitors, setMonitors] = useState([]);
   const [statusMap, setStatusMap] = useState({});
+  const [usage, setUsage] = useState({ used: 0, total: 0 });
+
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   const onEdit = (monitor) => {
@@ -30,8 +32,21 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMonitors((prev) => prev.filter((url) => url._id !== id));
+      await fetchUsage();
     } catch (error) {
       console.log("Not deleted", error);
+    }
+  };
+
+  const fetchUsage = async () => {
+    try {
+      const token = await getToken();
+      const res = await axios.get(`${backend_url}/api/url/usage`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUsage(res.data);
+    } catch (error) {
+      console.log("Not fetched usage", error);
     }
   };
 
@@ -47,8 +62,6 @@ const Dashboard = () => {
       }
     };
     if (user) {
-      console.log("Frontend user data:", user);
-
       storeUser();
     }
   }, [user]);
@@ -120,6 +133,7 @@ const Dashboard = () => {
           }
         }
         setStatusMap(updatedStatus);
+        await fetchUsage();
       } catch (error) {
         console.error("Failed to fetch or ping monitors", error);
       }
@@ -128,6 +142,10 @@ const Dashboard = () => {
     fetchMonitorsAndPing();
     const interval = setInterval(fetchMonitorsAndPing, 60000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    fetchUsage();
   }, []);
 
   useEffect(() => {
@@ -172,6 +190,8 @@ const Dashboard = () => {
           setSelectedMonitor={setSelectedMonitor}
           onEdit={onEdit}
           deleteUrl={handleDelete}
+          fetchUsage={fetchUsage}
+          usage={usage}
         />
         {/* DETAILS SECTION */}
         <Details
