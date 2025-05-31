@@ -2,36 +2,34 @@
 
 **UptimePulse** is a full-stack SaaS application to monitor website uptime and performance in real-time. Get alerts, logs, charts, and insights—powered by modern tech and a clean, responsive UI.
 
-
 ## 🚀 Live Demo
 
 👉 [Live Demo](https://uptimepulse.vercel.app/)
 
-
 ## 🖼️ Preview
 
-**Web View:**  
-![Web Screenshot](<add image link here>)  
+**Landing Page View:**  
+![Landing Page Screenshot](screenshots/LandingPage.png)
 
-**Mobile View:**  
-![Mobile Screenshot](<add image link here>)
-
+**Dashboard View:**  
+![Dashboard Screenshot](screenshots/Dashboard.png)
 
 ## 🔧 Tech Stack
 
 **Frontend:**
-- React  
-- Tailwind CSS  
-- ApexCharts  
-- Clerk (Authentication)  
+
+- React
+- Tailwind CSS
+- ApexCharts
+- Clerk (Authentication)
 
 **Backend:**
-- Node.js  
-- Express  
-- MongoDB + Mongoose  
-- Stripe (Payments)  
-- Nodemailer (Email alerts)
 
+- Node.js
+- Express
+- MongoDB + Mongoose
+- Stripe (Payments)
+- Nodemailer (Email alerts)
 
 ## ✨ Features
 
@@ -44,12 +42,10 @@
 - 📊 **Charts & Logs** — Beautiful UI showing response times and status logs.
 - 🧠 **Dashboard** — Overview of your monitors and their performance.
 
-
 ## 🧪 Test Credentials
 
 Due to Clerk's real email verification, test credentials are not available.  
 However, you can sign up using your own email to explore the app.
-
 
 ## 📁 Folder Structure
 
@@ -73,11 +69,9 @@ Craftsy/
 └── README.md
 ```
 
-
 ## 📄 License
 
 This project is licensed under the MIT License.
-
 
 ## 📬 Contact
 
@@ -86,9 +80,7 @@ Created by Sarit Bose
 - 📩 saritbose26@gmail.com
 - 🔗 [LinkedIn](https://linkedin.com/in/sarit-bose)
 
-
 ## 📝 Note
 
 **If anything is not working, just reload the page and be patient.**  
 Deployment platforms might cause minor cold start delays.
-
