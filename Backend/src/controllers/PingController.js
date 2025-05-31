@@ -17,7 +17,7 @@ export const pingUrl = async (req, res) => {
         "User-Agent": "UptimePulseBot/1.0",
         Accept: "application/json",
       },
-      timeout: 1000,
+      timeout: 5000,
     });
     const responseTime = Date.now() - start;
     let status = "up";

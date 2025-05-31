@@ -138,7 +138,6 @@ const Dashboard = () => {
         console.error("Failed to fetch or ping monitors", error);
       }
     };
-
     fetchMonitorsAndPing();
     const interval = setInterval(fetchMonitorsAndPing, 60000);
     return () => clearInterval(interval);

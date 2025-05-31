@@ -44,7 +44,7 @@ const Details = ({
               key={index}
               onClick={() => {
                 setSite(monitor._id);
-                setSelectedMonitor("");
+                setSelectedMonitor(monitor);
               }}
               className="flex group justify-between items-baseline h-8 px-1 cursor-pointer hover:bg-gray-100"
             >
