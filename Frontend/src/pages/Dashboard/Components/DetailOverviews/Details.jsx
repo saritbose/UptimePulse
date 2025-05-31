@@ -1,9 +1,9 @@
 import { Clock, Delete, Edit, Ellipsis, Plus, TrendingUp } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import SitesDetail from "./SitesDetail";
 import axios from "axios";
 import { useAuth } from "@clerk/clerk-react";
-import PingChart from "./ChartRealTime.jsx";
+import SitesDetail from "./Components/SitesDetail.jsx";
+import PingChart from "./Components/ChartRealTime.jsx";
 
 const Details = ({
   id,

@@ -1,9 +1,10 @@
-import Details from "@/Component/Details";
-import Navbar from "@/Component/Navbar";
-import View from "@/Component/View";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Navbar from "./Components/Navbar";
+import View from "./Components/ViewingAllMonitors/View";
+import Details from "./Components/DetailOverviews/Details";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const { user } = useUser();
@@ -17,7 +18,6 @@ const Dashboard = () => {
   const [monitors, setMonitors] = useState([]);
   const [statusMap, setStatusMap] = useState({});
   const [usage, setUsage] = useState({ used: 0, total: 0 });
-
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   const onEdit = (monitor) => {
@@ -31,9 +31,11 @@ const Dashboard = () => {
       await axios.delete(`${backend_url}/api/url/deleteUrl/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      toast.success("Monitor successfully deleted.");
       setMonitors((prev) => prev.filter((url) => url._id !== id));
       await fetchUsage();
     } catch (error) {
+      toast.error("Monitor not deleted.");
       console.log("Not deleted", error);
     }
   };

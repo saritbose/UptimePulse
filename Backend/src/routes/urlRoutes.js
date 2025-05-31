@@ -10,11 +10,11 @@ import {
 
 const urlRouter = Router();
 
-urlRouter.get("/getUrl/:id", getUrl);
-urlRouter.get("/getUrls", getUrls);
-urlRouter.post("/addUrl", addUrl);
-urlRouter.put("/editUrl/:id", editUrl);
-urlRouter.delete("/deleteUrl/:id", deleteUrl);
-urlRouter.get("/usage", getMonitorUsage);
+urlRouter.get("/getUrl/:id", getUrl); // Get a specific URL
+urlRouter.get("/getUrls", getUrls); // Get all URLs
+urlRouter.post("/addUrl", addUrl); // Add a URL
+urlRouter.put("/editUrl/:id", editUrl); // Edit a URL
+urlRouter.delete("/deleteUrl/:id", deleteUrl); // Delete a URL
+urlRouter.get("/usage", getMonitorUsage); // Checking features according to subscription
 
 export default urlRouter;

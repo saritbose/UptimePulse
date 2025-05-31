@@ -1,4 +1,4 @@
-import { SignOutButton, SignUpButton, UserButton } from "@clerk/clerk-react";
+import { SignOutButton, UserButton } from "@clerk/clerk-react";
 import {
   AlignJustify,
   Bird,
@@ -8,7 +8,7 @@ import {
   Plus,
   Settings,
 } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 
 const Navbar = ({ mobileNavbar, setMobileNavbar }) => {
   return (

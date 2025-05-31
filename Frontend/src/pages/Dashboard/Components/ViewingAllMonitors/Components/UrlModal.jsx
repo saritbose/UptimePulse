@@ -32,6 +32,7 @@ const UrlModal = ({ isOpen, onClose, onSave, monitor }) => {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        toast.success("Url Edited Successfully.");
       } else {
         await axios.post(
           `${backend_url}/api/url/addUrl`,
@@ -40,6 +41,7 @@ const UrlModal = ({ isOpen, onClose, onSave, monitor }) => {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        toast.success("Url Added Successfully.");
       }
       await onSave();
       onClose();

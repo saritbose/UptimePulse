@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import SitesList from "./SitesList";
 import { Ellipsis, Globe, Plus } from "lucide-react";
-import UrlModal from "./UrlModal";
 import { SignOutButton } from "@clerk/clerk-react";
 import {
   Select,
@@ -10,6 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import SitesList from "./Components/SitesList";
+import UrlModal from "./Components/UrlModal";
+import { toast } from "react-toastify";
 
 const View = ({
   urls,

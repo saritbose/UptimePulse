@@ -1,6 +1,7 @@
 import stripe from "../libs/stripe.js";
 import User from "../models/User.js";
 
+// Stripe Backend Logic
 export const createCheckoutSession = async (req, res) => {
   const { email, plan } = req.body;
   const priceMap = {
@@ -8,7 +9,7 @@ export const createCheckoutSession = async (req, res) => {
     team: "price_1RULCJSENKykVPzBVpNci7il",
   };
   if (!priceMap[plan]) {
-    return res.json({ success: false, error: "Invalid plan" });
+    return res.status(404).json({ success: false, error: "Invalid plan" });
   }
   try {
     const session = await stripe.checkout.sessions.create({
@@ -27,13 +28,15 @@ export const createCheckoutSession = async (req, res) => {
     });
     const user = await User.findOne({ email });
     if (!user) {
-      return res.json({ error: "User not found" });
+      return res.status(404).json({ error: "User not found" });
     }
     user.plan = plan;
     await user.save();
-    res.json({ url: session.url });
+    return res.status(200).json({ url: session.url });
   } catch (error) {
-    console.error("❌ Stripe error:", error);
-    res.status(500).json({ error: "Stripe checkout failed" });
+    return res
+      .status(502)
+      .status(500)
+      .json({ error: "Stripe checkout failed" });
   }
 };

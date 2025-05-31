@@ -1,3 +1,4 @@
+// Subscription Plans
 export const PLAN_LIMITS = {
   free: {
     maxMonitors: 3,

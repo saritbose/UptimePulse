@@ -3,6 +3,6 @@ import { createCheckoutSession } from "../controllers/checkoutController.js";
 
 const checkoutRouter = Router();
 
-checkoutRouter.post("/pay", createCheckoutSession);
+checkoutRouter.post("/pay", createCheckoutSession); // Stripe Checkout
 
 export default checkoutRouter;

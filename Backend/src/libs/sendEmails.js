@@ -11,6 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Verifying Email Alerts are Working
 transporter.verify(function (error, success) {
   if (error) {
     console.log("SMTP Error:", error);
@@ -19,6 +20,7 @@ transporter.verify(function (error, success) {
   }
 });
 
+// Sending emails for URLs which are down
 export const sendEmail = async (toEmail, subject, text) => {
   try {
     const info = await transporter.sendMail({
@@ -27,9 +29,8 @@ export const sendEmail = async (toEmail, subject, text) => {
       subject: subject,
       text: text,
     });
-
     console.log("✅ Alert sent:", info.response);
-  } catch (err) {
-    console.error("❌ Failed to send alert:", err);
+  } catch (error) {
+    console.error("❌ Failed to send alert:", error);
   }
 };

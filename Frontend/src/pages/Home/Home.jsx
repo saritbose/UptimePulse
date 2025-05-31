@@ -10,14 +10,14 @@ import {
   Snail,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import Testimonials from "../Component/Testimonials";
-import Pricings from "@/Component/Pricings";
-import Features from "@/Component/Features";
-import Chart1 from "@/Component/Chart1";
-import Chart2 from "@/Component/Chart2";
-import Chart3 from "@/Component/Chart3";
 import { SignInButton, SignUpButton, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
+import Chart1 from "./Components/Chart1";
+import Chart3 from "./Components/Chart3";
+import Chart2 from "./Components/Chart2";
+import Features from "./Components/Features";
+import Pricings from "./Components/Pricings";
+import Testimonials from "./Components/Testimonials";
 
 const Home = () => {
   const { isSignedIn } = useUser();

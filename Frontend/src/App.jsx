@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import { ToastContainer } from "react-toastify";
-import Dashboard from "./pages/Dashboard";
-import { RedirectToSignIn, useUser } from "@clerk/clerk-react";
-import SignInPage from "./pages/SignInPage";
-import SignUpPage from "./pages/SignUpPage";
-import PaymentSuccess from "./pages/PaymentSuccess";
-import PaymentCancel from "./pages/PaymentCancel";
+import { useUser } from "@clerk/clerk-react";
+import Home from "./pages/Home/Home";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import SignInPage from "./pages/ClerkSignPages/SignInPage";
+import SignUpPage from "./pages/ClerkSignPages/SignUpPage";
+import PaymentSuccess from "./pages/PaymentResult/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentResult/PaymentCancel";
 
 const ProtectedRoute = ({ children }) => {
   const { isSignedIn, isLoaded } = useUser();

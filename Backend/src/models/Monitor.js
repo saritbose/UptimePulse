@@ -23,10 +23,6 @@ const monitorSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
-    isPaused: {
-      type: Boolean,
-      default: false,
-    },
   },
   { timestamps: true }
 );
