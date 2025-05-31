@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Logo from "../assets/UptimePulseLogo.png";
 import {
   ArrowRight,
   Bell,
@@ -35,7 +34,7 @@ const Home = () => {
       {/* HEADER */}
       <header className="flex justify-between text-sm px-10">
         <div className="flex gap-2 items-center">
-          <img src={Logo} />
+          <img src="/UptimePulseLogo.png" />
           <div>UptimePulse</div>
         </div>
         <div className="hidden md:flex gap-8 text-neutral-400">
@@ -99,23 +98,23 @@ const Home = () => {
           </span>
           <div className="flex items-center justify-between text-neutral-400 my-3">
             <div className="flex items-center mr-2">
-              <img className="w-7" src="/src/assets/Hallmark.jpg" />
+              <img className="w-7" src="/Hallmark.jpg" />
               <div>Halimark</div>
             </div>
             <div className="flex items-center mr-2">
-              <img className="w-7" src="/src/assets/Aircell.jpg" />
+              <img className="w-7" src="/Aircell.jpg" />
               <div>Aircell</div>
             </div>
             <div className="flex items-center text-nowrap mr-2">
-              <img className="w-7" src="/src/assets/Quatarair.jpg" />
+              <img className="w-7" src="/Quatarair.jpg" />
               <div>Qatar Air</div>
             </div>
             <div className="flex items-center mr-2">
-              <img className="w-7" src="/src/assets/Lionix.jpg" />
+              <img className="w-7" src="/Lionix.jpg" />
               <div>Lionix</div>
             </div>
             <div className="flex items-center mr-2">
-              <img className="w-7" src="/src/assets/pizzahut.jpg" />
+              <img className="w-7" src="/pizzahut.jpg" />
               <div>pizzaHut</div>
             </div>
           </div>
@@ -171,7 +170,7 @@ const Home = () => {
         </div>
       </div>
       {/* REVIEWS */}
-      <img src="/src/assets/Reviews.jpg" />
+      <img src="/Reviews.jpg" />
       <div className="px-7 mt-10">
         <div className="flex justify-between items-baseline">
           <div>
@@ -202,7 +201,7 @@ const Home = () => {
         Ready to Stay Online 24/7?
       </div>
       <div className="flex gap-2 items-center justify-center mb-10">
-        <img src={Logo} />
+        <img src="/UptimePulseLogo.png" />
         <div>UptimePulse</div>
       </div>
       {/* FOOTER */}
