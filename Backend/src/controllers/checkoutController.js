@@ -22,8 +22,8 @@ export const createCheckoutSession = async (req, res) => {
       ],
       customer_email: email,
       success_url:
-        "http://uptimepulse.vercel.app/success?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://uptimepulse.vercel.app/cancel",
+        "https://uptimepulse.vercel.app/success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://uptimepulse.vercel.app/cancel",
     });
     const user = await User.findOne({ email });
     if (!user) {
